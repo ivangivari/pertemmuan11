@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    NIM: <input type="text" id="txNIM"><br>
+    NAMA: <input type="text" id="txNAMA"><br>
+    TGL LAHIR: <input type="text" id="txTGLLAHIR"><br>
+    ALAMAT: <input type="text" id="txALAMAT"><br>
+    jkl: <input type="text" id="txjkl"><br>
+    
+    <script>
+       const bacadata = new XMLHttpRequest();
+      bacadata.open("GET","http://localhost/pertemmuan11/latihano1.php"); 
+      bacadata.send();
+
+      bacadata.onload = function(){
+        const dta = JSON.parse(this.responseText);
+       let JKL = (dta.JKEL=="L")?"Laki-Laki":"Perempuan";
+       
+        console.log(dta);
+        document.getElementById("txNIM").value = dta.NIM;
+        document.getElementById("txNAMA").value = dta.NAMA;
+        document.getElementById("txTGLLAHIR").value = dta.TGLLAHIR;
+        document.getElementById("txALAMAT").value = dta.ALAMAT;
+        document.getElementById("txjkl").value = dta.jkl;
+
+      }
+    </script>
+
+</body>
+</html>
